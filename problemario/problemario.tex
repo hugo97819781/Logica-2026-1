@@ -1,0 +1,253 @@
+%%%%%%%%%%%%%%%%%%%%%
+%%% F O R M A T O %%%
+%%%%%%%%%%%%%%%%%%%%%
+    \documentclass[letterpaper,DIV=15,headsepline,12pt]{scrartcl}
+    \usepackage[spanish,mexico,shorthands=off,es-lcroman]{babel}
+%%%%%%%%%%%%%%%%%%%%%%%
+%%% P A Q U E T E S %%%
+%%%%%%%%%%%%%%%%%%%%%%%
+    \usepackage{mathtools}
+    \usepackage{amsthm}
+    \usepackage{ifthen}
+    \usepackage{truthtable} %para crear tablas de verdad
+    \usepackage[x11names, table]{xcolor}
+    \usepackage[most]{tcolorbox}
+    \usepackage{multicol}
+%%%%%%%%%%%%%%%%%%%%%
+%%% F U E N T E S %%%
+%%%%%%%%%%%%%%%%%%%%%
+    \usepackage{fontspec}
+    \usepackage{unicode-math}
+    \setmainfont{GFSArtemisia.otf}[
+        Path = fonts/GFSArtemisia/ ,
+        BoldFont = GFSArtemisiaBold.otf,
+        ItalicFont = GFSArtemisiaIt.otf,
+        BoldItalicFont = GFSArtemisiaBoldIt.otf
+    ]
+    \setmathfont{STIXTwoMath-Regular.ttf}[
+        Path = fonts/StixTwo/
+    ]
+%%%%%%%%%%%%%%%%%%%%%%%
+%%% E S T É T I C A %%%
+%%%%%%%%%%%%%%%%%%%%%%%
+    \usepackage{scrlayer-scrpage}
+        \clearpairofpagestyles
+        \ihead{\footnotesize \textit{Lógica Matemática I}}
+        \ohead{\footnotesize \textit{2026-1}}
+        \cfoot{\normalfont\thepage}
+        \addtokomafont{title}{\bfseries \rmfamily}
+        \setlength{\headsep}{5pt}
+        \newpairofpagestyles{beginstyle}{
+            \clearpairofpagestyles
+            \KOMAoptions{headsepline=false}
+            \cfoot{\footnotesize \pagemark}
+            \cfoot{\normalfont\thepage}
+        }
+        \addtokomafont{section}{\raggedleft\rmfamily}
+        \addtokomafont{subsection}{\raggedleft\rmfamily}
+        \addtokomafont{subsubsection}{\raggedleft\rmfamily}
+        \setlength{\headsep}{8pt}
+        \setlength{\footskip}{20pt}
+        \setlength{\textheight}{600pt}
+    \usepackage[shortlabels]{enumitem}
+    \setenumerate[1]{label=\MakeLowercase{\roman*}), ref=\roman*}
+    \setenumerate[2]{label=\MakeLowercase{\alph*}), ref=\alph*}
+%%%%%%%%%%%%%%%%%%%%%%%
+%%% C O M A N D O S %%%
+%%%%%%%%%%%%%%%%%%%%%%%
+    \newcommand{\mathds}[1]{\mathbb{#1}}
+    \renewcommand{\emptyset}{\varnothing}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% D O C U M E N T O %%
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+    \thispagestyle{beginstyle}
+    \begin{center}
+        {\fontsize{30}{60}\rmfamily \textbf{Lista de Ejercicios}} \\ \vspace{.2cm}
+        Lógica Matemática I, 2026-1
+    \end{center}
+    \begin{flushright}
+        \footnotesize \hfill Profesor: Fernando Javier Nuñez Rosales.\\
+        \hfill Ayudante: Hugo Víctor García Martínez.
+    \end{flushright}
+
+    \section*{Preliminares conjuntistas}
+    \begin{enumerate}
+        \item Demuestra que el conjunto de los subconjuntos finitos de números naturales, es decir es numerable.
+        \item Un número se llama algebraico si es la raíz de un polinomio con coeficientes enteros. Muestra que el conjunto de números algebraicos es contable.
+        \item Pruebe que que hay números reales que no son algebraicos.
+        \item Sean $X$ un conjunto y $\{A_n : n\in\mathds{N} \}$ una familia de subconjuntos de $X$ tales que para cualesquiera $n,m\in\mathds{N}$ si $n<m$, entonces $A_n\subseteq A_m$. Si $k$ es un entero positivo y
+        \begin{displaymath}
+            a_1,\ldots a_k\in \bigcup_{n\in \mathds{N}}A_n\text{,}
+        \end{displaymath}
+        entonces existe un entero $l$ tal que $ a_1,\ldots a_k\in A_l$.
+        \item De un contraejemplo para el enunciado anterior cuando se considera una cantidad infinita de elementos de la unión.
+        \item Sean $X,Y$ conjuntos y $f:X \to Y$ cualquier función. Para cada $x \in X$, defínase $A_x:=\{y \in X : f(y)=f(x)\}$ y sea $C:=\{A_x : x \in A\}$.
+        \begin{enumerate}
+            \item Muestre que $\hat{f}:=\{(A_x,f(x)) : x \in X\}$, es función.
+            \item Demuestre que $\hat{f}:C \to f[X]$ es biyectiva.
+            \item Concluya que toda función es composición de una función sobreyectiva, una función biyectiva y una función inyectiva.
+        \end{enumerate}
+    \end{enumerate}
+
+    \newpage
+    \section*{Conjunto B-F-Induntivos}
+        \begin{enumerate}
+            \item Construye los polinomios con coeficientes en los reales como conjunto B-F-inductivo.
+            \item Construye los números enteros como conjunto mínimo B-F-Inductivo.
+            \item ¿Cuantos elementos tiene un conjunto B-F-Inductivo?
+            \item Sea $X:=P(\mathds{R})$ el conjunto potencia de los reales. ¿Existe una operación $f:X \to X$? tal que $X$ es el mínimo conjunto $\{\emptyset\}$-$\{f\}$ inductivo?
+            \item Construye a $\overline{L}$ como como conjunto B-F-inductivo.
+            \item Demuestre que si cierta propiedad, $\mathcal{P}(x)$ de números enteros, se cumple para cada primo $p$ y se preserva bajo productos, entonces se cumple para todo número entero mayor o igual que $2$.
+            \item Sean $U$ un conjunto, $B \subseteq U$ y $F$ un conjunto de operaciones en $U$. Si $X:=B^*$ es libremente generado por $B$, ¿es posible que $X$ sea finito?. Argumente su resupuesta.
+            \item Demuestre que:
+            \begin{enumerate}
+                \item Si $U=\mathds{N}$, $B=\{0\}$ y $F=\{s\}$ (con $s:\mathds{N} \to \mathds{N}$ la función sucesor); entonces $\mathds{N}=B^*$ es libremente generado.
+                \item Si $U=\mathds{Z}$, $B=\{0\}$ y $F=\{s,p\}$ (con $s,p:\mathds{Z} \to \mathds{Z}$ las funciones sucesor y predecesor, respectivamente); entonces $\mathds{Z}=B^*$ NO es libremente generado.
+                \item Existen un racional $q_0 \in \mathds{Q}$ y una operación $g:\mathds{Q} \to \mathds{Q}$ tales que $\mathds{Q}$ es libremente generado por $\{q_0\}$ y $\{g\}$.
+            \end{enumerate}
+            \item Utilizando el Teorema de Recursión para Naturales, demuestre la existencia del factorial. Esto es, pruebe que existe una función $h:\mathds{N} \to \mathds{N}$ de modo que $h(0)=1$; y, para cada $n \in \mathds{N}$ se cumpla $h(n+1)=(n+1)h(n)$.
+        \end{enumerate}
+    
+    \newpage
+    \section*{Lenguajes y sistemas formales}
+        \begin{enumerate}
+            \item Da tres ejemplos de alfabetos finitos, tres ejemplos de alfabetos numerables y tres ejemplos de alfabetos incontables.
+        \end{enumerate}
+    
+    \newpage
+    \section*{Procedimientos efectivos}
+        \begin{enumerate}
+            \item Muestra que un subconjunto $X\subseteq \mathds{N}$ es decidible si y solo si $\mathds{N}-X$ también lo es.
+            \item Sea $X\subseteq \mathds{N}$. Prueba que si $X$ y $\mathds{N}-X$ son efectivamente numerables, entonces $X$ es decidible.
+            \item Muestra que el conjunto de las tautologías es decidible.
+        \end{enumerate}
+    
+    \newpage
+    \section*{Álgebras de Boole}
+        \begin{enumerate}
+            \item Prueba que $\{[A]_\equiv : A\in\overline{L}\}$ puede ser dotada de estructura de álgebra de Boole.
+        \end{enumerate}
+    
+    \newpage
+    \section*{Lenguaje proposicional}
+        \begin{enumerate}
+            \item Menciona tres proposiciones y tres paradojas.
+            \item Muestra que no hay fórmulas de longitud 2, 3 ni 6, pero que cualquier otra longitud es posible.
+            \item Muestra que en toda fórmula el número de lugares que usa algún conectivo binario más uno es el número de lugares ocupados por letras proposicionales.
+            \item Muestra que la longitud de una fórmula en la que no ocurre el símbolo de negación es impar.
+            \item Muestra que en una fórmula en la que no aparece la negación más de una cuarta parte de los símbolos de la fórmula son letras proposicionales.
+            \item Define la función que a cada fórmula proposicional le asocia el conjunto de las letras proposicionales que ocurren en ella.
+            \item Define recursivamente la función que a cada fórmula le asocia el número de conectivos que ocurren en ella.
+            \item Demuestra que la inducción por número de conectivos para $\overline{L}$ es un método valido.
+        \end{enumerate}
+    
+    \newpage
+    \section*{La semántica de la lógica proposicional}
+        \begin{enumerate}
+            \item Muestra que todas las tautologías son equivalentes entre si.
+            \item Muestra que todas las falacias son equivalentes entre si
+            \item Muestra que la equivalencia lógica módulo un conjunto de fórmulas es una relación de equivalencia entre fórmulas.
+            \item Cuantas clases de equivalencia tiene la relación de equivalencia lógica.
+            
+            \item Sean $\alpha, \beta, \gamma$ fórmulas cualesquiera. Demuestre un inciso de cada una de las siguientes columnas:
+            \begin{multicols}{3}
+            \begin{enumerate}
+                \item $\alpha \vDash \alpha \lor \beta$.
+                \item $\alpha \land (\alpha \to \beta) \vDash \beta $.
+                \item $\beta \to (\alpha \land \lnot \alpha) \vDash (\alpha \land \lnot \alpha) \to \beta$.
+            \end{enumerate}
+            \end{multicols}
+            Encuentre además fórmulas $\alpha$ y $\beta$ de modo que:
+            \begin{multicols}{3}
+            \begin{enumerate}
+                \item $\alpha \lor \beta \not\vDash \alpha$.
+                \item $\beta \not \vDash \alpha \land (\alpha \to \beta)$.
+                \item $(\alpha \land \lnot \alpha) \to \beta \not\vDash \beta \to (\alpha \land \lnot \alpha)$.
+            \end{enumerate}
+            \end{multicols}
+            
+            \item Sean $\alpha, \beta, \gamma$ fórmulas cualesquiera. Demuestre un inciso de cada una de las siguientes columnas:
+            \begin{multicols}{3}
+            \begin{enumerate}
+                \item $\alpha \equiv \lnot ( \lnot \alpha )$.
+                \item $\alpha \equiv \alpha \land \alpha$.
+                \item $\alpha \equiv \alpha \lor \alpha$.
+                
+                \item $\alpha \to \beta = \lnot \alpha \lor \beta $.
+                \item $\lnot(\alpha \land \beta) \equiv \lnot \alpha \lor \lnot \beta$.
+                \item $\lnot( \alpha \to \beta) \equiv \alpha \land \lnot \beta$.
+                
+                \item $\alpha \to (\beta \to \gamma) \equiv (\alpha \land \beta) \to \gamma $.
+                \item $\lnot \alpha \equiv \alpha \to (\beta \land \lnot \beta)$.
+                \item $\alpha \lor \lnot \alpha \equiv \alpha \to (\gamma \to \alpha)$.
+            \end{enumerate}
+            \end{multicols}
+    
+            \item Sean $\alpha$ y $\beta$ fórmulas. Demuestre que $\alpha \to \beta \vDash \beta \to \alpha$ si y sólo si $\beta \to \alpha$ es tautología. Concluya utilizando lo anterior que $\alpha \to \beta \equiv \beta \to \alpha$ si y sólo si $\alpha \equiv \beta$.
+            
+            \item De un ejemplo de una fómrmula $\alpha$ que no sea contradicción ni tautología. Pruebe además que cualquier contradicción implica lógicamente a $\alpha$ y que de $\alpha$ se sigue cualquier tautología.
+            
+            \item Da un ejemplo de conjunto de fórmulas $\Sigma$ de tal modo que $\equiv_\Sigma$ tenga una cantidad finita de clases diferente a 1.
+            \item Da tres ejemplos de tautologías (con la demostración de que lo son).
+            \item Prueba que si $\Sigma$ es un conjunto de fórmulas y $\alpha ,\beta\in \overline{L}$, entonces
+                \begin{displaymath}
+                    \Sigma\cup\{\alpha\}\vDash\beta\text{ si y solo si }\Sigma\vDash \alpha\longrightarrow\beta\text{.}
+                \end{displaymath}
+            \item Muestra que dos fórmulas $A$ y $B$ son equivalente si y solo si $A\longleftrightarrow B$ es tautología.
+            \item Prueba o refuta que las siguientes afirmaciones donde $\Sigma$ es un conjunto de fórmulas y $B ,A\in \overline{L}$ .
+                \begin{enumerate}
+                    \item Si $\Sigma\vDash A$ o $\Sigma\vDash B$, entonces $\Sigma\vDash A\vee B$.
+                    \item Si  $\Sigma\vDash A\vee B$, entonces $\Sigma\vDash A$ o $\Sigma\vDash B$.
+                    \item Si $\Sigma\vDash A$ y $\Sigma\vDash B$, entonces $\Sigma\vDash A\And B$.
+                    \item Si $\Sigma\vDash \neg A$, entonces $\Sigma\nvDash A$.
+                    \item Si $\Sigma\nvDash A$, entonces $\Sigma\vDash\neg A$.
+                \end{enumerate}
+            \item Sea $(A_n)_n$ una sucesión de fórmulas proposicionales. Para cada fórmula $B\in\overline{L}$, se define $B^*$ como la fórmula que resulta de sustituir en $B$ cada ocurrencia de la letra proposicional $P_j$ por la fórmula $A_j$.
+                \begin{enumerate}
+                    \item Defina recursivamente la asignación $B\mapsto B^*$; y
+                    \item Prueba que si $v$ es una asignación de verdad para las letras proposicionales y se define la asignación de verdad para las letras proposiciones $u$ tal que $u(P_n)=\overline{v} (A_n)$, entonces $\overline{u} (B)=\overline{v}(B^*)$.
+                \end{enumerate} 
+            \item Sean $A, B\in\overline{L}$. Para cada fórmula $F\in\overline{L}$ sea $F_A^B$ la fórmula que resulta de sustituir en $F$ cada ocurrencia de la fórmula $A$ por la fórmula $B$.
+                \begin{enumerate}
+                    \item Define recursivamente $F_A^B$; y
+                    \item Prueba que si $A\equiv B$, entonces $F_A^B\equiv F$.
+                \end{enumerate}
+            \item Sea $A\in\overline{L}$ un fórmula en la que solo ocurren los conectivos $\vee ,\And$ y $\neg$. Tómese $A^*$ como el resultado de \textbf{intercambiar} $\vee$ y $\And$; y de sustituir la ocurrencia de cada letra proposicional por su negación. Prueba que $A^*\equiv \neg A$.
+            \item Prueba que los siguiente conjuntos de conectivos son completos $\{\vee, \neg\}$ y $\{\And ,\neg\}$.
+        \end{enumerate}
+    
+    \newpage
+    \section*{La sintaxis de la lógica proposicional}
+        \begin{enumerate}
+            \item Da una deducción en el CProp de las siguientes fórmulas.No se puede usar el teorema de la deducción.
+                \begin{enumerate}
+                    \item $((A\longrightarrow (B\longrightarrow C))\longrightarrow (B\longrightarrow (A\longrightarrow C)))$
+                    \item $((A\longrightarrow B)\longrightarrow ((B\longrightarrow C)\longrightarrow (A\longrightarrow C))$
+                    \item  $(\neg (\neg A))\longrightarrow A$
+                    \item $A\longrightarrow (\neg (\neg A))$
+                    \item  $((A\longrightarrow B)\longrightarrow ((\neg B)\longleftarrow(\neg A)))$
+                \end{enumerate}
+        \end{enumerate}
+    
+    \newpage
+    \section*{Teorema de Compacidad}
+        \begin{enumerate}
+            \item Sea $\Sigma\subseteq\overline{L}$ y $A\in\overline{L}$. Si $\Sigma$ es finitamente satisfacible, entonces $\Sigma\cup\{A\}$ es finitamente satisfacible o $\Sigma\cup\{\neg A\}$ es finitamente satisfacible.
+            \item  Sea $\Delta\subseteq\overline{L}$ tal que,
+                    \begin{itemize}
+                        \item $\Delta$ es finitamente satisfacible; y
+                        \item Para toda $A\in\overline{L}$ se tiene que $A\in \Delta$ o $\neg A\in\Delta$.
+                    \end{itemize}
+                    Prueba que $\Delta$ es satisfacible.
+        \end{enumerate}
+    
+    \newpage
+    \section*{Teorema de completud-correctud}
+        \begin{enumerate}
+            \item Pruebe que el CProp es consistente, es decir, no existe $A\in \Bar{L}$ tal que $\vdash A$ y $\vdash (\neg A)$.
+            \item Prueba que el teorema de compacidad es equivalente al teorema de completud correctud.
+            \item Prueba que el teorema de compacidad es equivalente a que para cualquier $\Sigma\subseteq \Bar{L}$ y cualquier fórmula $A$, $\Sigma\vDash A$ si y solo si existe un subconjunto finito $\Sigma_0\subseteq\Sigma$ tal que $\Sigma_0\vDash A$.
+        \end{enumerate}
+
+\end{document}

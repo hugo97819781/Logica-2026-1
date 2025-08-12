@@ -1,0 +1,146 @@
+%%%%%%%%%%%%%%%%%%%%%
+%%% F O R M A T O %%%
+%%%%%%%%%%%%%%%%%%%%%
+    \documentclass[letterpaper,DIV=15,headsepline,12pt]{scrartcl}
+    \usepackage[spanish,mexico,shorthands=off,es-lcroman]{babel}
+%%%%%%%%%%%%%%%%%%%%%%%
+%%% P A Q U E T E S %%%
+%%%%%%%%%%%%%%%%%%%%%%%
+    \usepackage{mathtools}
+    \usepackage{amsthm}
+    \usepackage{tikz-cd}
+    \usepackage{comment}
+    \usepackage{lipsum}
+    \usepackage{ifthen}
+    \usepackage{truthtable} %para crear tablas de verdad
+    \usepackage[x11names, table]{xcolor}
+    \usepackage[most]{tcolorbox}
+    \usepackage{multicol}
+%%%%%%%%%%%%%%%%%%%%%
+%%% F U E N T E S %%%
+%%%%%%%%%%%%%%%%%%%%%
+    \usepackage{fontspec}
+    \usepackage{unicode-math}
+    \setmainfont{GFSArtemisia.otf}[
+        Path = fonts/GFSArtemisia/ ,
+        BoldFont = GFSArtemisiaBold.otf,
+        ItalicFont = GFSArtemisiaIt.otf,
+        BoldItalicFont = GFSArtemisiaBoldIt.otf
+    ]
+    \setmathfont{STIXTwoMath-Regular.ttf}[
+        Path = fonts/StixTwo/
+    ]
+%%%%%%%%%%%%%%%%%%%%%%%
+%%% E S T É T I C A %%%
+%%%%%%%%%%%%%%%%%%%%%%%
+    \usepackage{scrlayer-scrpage}
+        \clearpairofpagestyles
+        \ihead{\footnotesize \textit{Lógica Matemática I}}
+        \ohead{\footnotesize \textit{2026-1}}
+        \cfoot{\normalfont\thepage}
+        \addtokomafont{title}{\bfseries \rmfamily}
+        \setlength{\headsep}{5pt}
+        \newpairofpagestyles{beginstyle}{
+            \clearpairofpagestyles
+            \KOMAoptions{headsepline=false}
+            \cfoot{\footnotesize \pagemark}
+            \cfoot{\normalfont\thepage}
+        }
+        \addtokomafont{section}{\raggedleft\rmfamily}
+        \addtokomafont{subsection}{\raggedleft\rmfamily}
+        \addtokomafont{subsubsection}{\raggedleft\rmfamily}
+        \setlength{\headsep}{8pt}
+        \setlength{\footskip}{20pt}
+        \setlength{\textheight}{600pt}
+    \usepackage[shortlabels]{enumitem}
+    \setenumerate[1]{label=\MakeLowercase{\roman*}), ref=\roman*}
+    \setenumerate[2]{label=\MakeLowercase{\alph*}), ref=\alph*}
+%%%%%%%%%%%%%
+%%% S E T %%%
+%%%%%%%%%%%%%
+    \newcommand\SetSymbol[1][]{%
+        \nonscript\:#1\vert
+        \allowbreak
+        \nonscript\:
+        \mathopen{}}
+        \DeclarePairedDelimiterX\Set[1]\{\}{%
+        \renewcommand\st{\SetSymbol[\delimsize]}
+        #1
+    }
+        \DeclarePairedDelimiterX\Class[1]\langle\rangle{%
+        \renewcommand\st{\SetSymbol[\delimsize]}
+        #1
+    }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% E J E R C I C I O S %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \newcounter{Ejer}
+    \newcounter{Pts}
+    \setcounter{Ejer}{1}
+    \setcounter{Pts}{1}
+    \newcommand{\pts}{}
+    \newenvironment{ejercicio}[1]{\noindent
+        \ifthenelse{\equal{#1}{1}}{\renewcommand{\pts}{\textbf{(#1 pt)}}}{\renewcommand{\pts}{\textbf{(#1 pts)}}}\textbf{Ej. \theEjer} \pts\stepcounter{Ejer}}{\vspace{.3cm}}
+%%%%%%%%%%%%%%%%%
+%%% C A J A S %%%
+%%%%%%%%%%%%%%%%%
+    \usepackage{thmtools}
+    \usepackage[framemethod=TikZ]{mdframed}
+    \mdfsetup{innertopmargin=-2pt, innerbottommargin=5pt, roundcorner=5pt, linewidth=0}
+    \newmdtheoremenv[backgroundcolor=azul!8]{definicion}{Definición}[section]
+    \newmdtheoremenv[backgroundcolor=azul!8]{proposicion}[definicion]{Proposición}
+    \newmdtheoremenv[backgroundcolor=azul!8]{lema}[definicion]{Lema}
+    \newmdtheoremenv[backgroundcolor=azul!8]{teorema}[definicion]{Teorema}
+    \newmdtheoremenv[backgroundcolor=azul!8]{corolario}[definicion]{Corolario}
+    \newmdtheoremenv[backgroundcolor=azul!8]{observacion}[definicion]{Observación}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% E N T O R N O S - D E M y S O L %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \renewcommand\qedsymbol{$\blacksquare$}
+    \makeatletter
+        \renewenvironment{proof}[1][]{%
+            \par\pushQED{\qed}%
+            \normalfont\topsep6pt \partopsep0pt % espacio antes del entorno
+            \trivlist
+            \item[\hskip\labelsep
+                    \textbf{\textit{Demostración.}}% Cambiado aquí
+            ]#1
+            }{%
+            \popQED\endtrivlist\@endpefalse
+        }
+       \newenvironment{solucion}[1][]{%
+            \par\pushQED{\hfill \lozenge}%
+            \normalfont\topsep6pt \partopsep0pt % espacio antes del entorno
+            \trivlist
+            \item[\hskip\labelsep
+                    \textbf{\textit{Solución.}}% Cambiado aquí
+            ]#1
+            }{%
+            \popQED\endtrivlist\@endpefalse
+        }
+    \makeatother
+%%%%%%%%%%%%%%%%%%%%%%%
+%%% C O M A N D O S %%%
+%%%%%%%%%%%%%%%%%%%%%%%
+    \newcommand{\mathds}[1]{\mathbb{#1}}
+    \renewcommand{\emptyset}{\varnothing}
+    \newcommand{\id}{\mathrm{id}}
+    \DeclareMathOperator{\ima}{ima}
+    \DeclareMathOperator{\dom}{dom}
+    \newcommand{\marker}[2][Gold2]{\ifmmode \tcbox[on line,boxrule=0pt,colframe=#1!30,colback=#1!30,arc=2mm,left=0pt,right=0pt,top=.7pt,bottom=.7pt]{\ensuremath{#2}} \else \tcbox[on line,boxrule=0pt,colframe=#1!30,colback=#1!30,arc=2mm,left=0pt,right=0pt,top=.7pt,bottom=.7pt]{#2}\fi}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% D O C U M E N T O %%
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+    \thispagestyle{beginstyle}
+    \begin{center}
+        {\fontsize{30}{60}\rmfamily \textbf{Tarea 6 (Solución)}} \\ \vspace{.2cm}
+        Lógica Matemática I, 2026-1
+    \end{center}
+    \begin{flushright}
+        \footnotesize \hfill Profesor: Fernando Javier Nuñez Rosales.\\
+        \hfill Ayudante: Hugo Víctor García Martínez.
+    \end{flushright}
+
+\end{document}
