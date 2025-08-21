@@ -87,7 +87,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
-    %\thispagestyle{beginstyle}
+    \pagestyle{empty}
     \begin{center}
         {\fontsize{30}{60}\rmfamily \textbf{Tarea 1}} \\ \vspace{.2cm}
         Lógica Matemática I, 2026-1
@@ -104,19 +104,25 @@
     \end{ejercicio}
 
     \begin{ejercicio}{2}
-        Considere el siguiente ``axioma'' de la teoría de conjuntos: $\exists x \, (x = x)$. Argumente intuitivamente si de este axioma, y únicamente este axioma, es posible deducir que existe un conjunto sin elementos; esto es, $\exists x \, \forall y \, (\lnot (y \in x))$. ¿El argumento que dió es una demostración de su afirmación?
+        Sean $X$ un conjunto, $n$ un natural y $R$ una relación de aridad $n$ en $X$. Definase la relación $S$ en $X^n$ como: $f \mathrel{S} g$ si y sólo si existe $h:n \to n$ biyectiva tal que $f=g \circ h$. Pruebe que $S$ es relación de equivalencia.
     \end{ejercicio}
 
-    \begin{ejercicio}{2}
-        Sea $L$ un lenguaje numerable. Pruebe (utilizando los teoremas de equipotencia y numerabilidad vistos en clase) que la estrella de Kleene, $L^*$, es numerable también.
+    \begin{ejercicio}{3}
+        Considere el tipo de semejanza $\tau=\{R\}$, donde $R$ es una letra relacional de aridad $2$. Encuentre alguna fórmula el lenguaje de primer orden correspondiente a $\tau$, que sea simultáneamente:
+        \begin{enumerate}
+            \item Verdadera en la estructura $(\mathbb{N},<)$.
+            \item Falsa en la estructura $(\mathscr{P}(\mathbb{N}),\subsetneq)$.
+            \item Verdadera en la estructura $(\mathbb{Z},>)$.
+            \item Falsa en la estructura $(5 \cup \{7\}, \in)$.
+        \end{enumerate}
+        Justifique sus afirmaciones. 
     \end{ejercicio}
 
-    \begin{ejercicio}{2}
-        
-    \end{ejercicio}
+    \begin{ejercicio}{3}
+        Sea $\tau$ el tipo de semejanza $\{c\} \cup \{R\}$, donde, $c$ es una letra de constante y $R$ una letra relacional de aridad $3$. Considere el enunciado:
+        \[ \forall x \, \forall y \, \Big( \forall z \big( R(z,x,c) \leftrightarrow R(z,y,c) \big) \to x=y \Big) \]
 
-    \begin{ejercicio}{2}
-        
+        De dos ejemplos de estructuras, en la primera, el enunciado dado debe ser verdadero; y, en la segunda, debe ser falso.
     \end{ejercicio}
 
 \end{document}
